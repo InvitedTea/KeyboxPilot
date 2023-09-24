@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     modelId: "code-bison@001",
     instances: [
       {
-        prefix: " As a solidity smart contract developer. Please explain by providing human-interpretable intent for the code. In the end also please provide risk score (1-10) for this code. code is here: "+ contractData.content,
+        prefix: " As a smart contract developer. Please explain by providing human-interpretable intent for the code. In the end also please provide risk score (1-10) for this code. code is here: "+ contractData.content,
        // content: contractData.content // Assuming contractData is the smart contract content
       }
     ],

@@ -81,7 +81,7 @@ export default function AppPreviewContract() {
             onClick={downloadContract}
             icon={<ArrowDownTrayIcon width={20} />}
           >
-            <span className="hidden md:block">Download contract</span>
+            <span className="hidden md:block">Download files</span>
           </AppButton>
         </div>
 
