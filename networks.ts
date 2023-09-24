@@ -15,8 +15,36 @@ export const NETWORKS: NetworksObject = {
     endpoint: (contractAddress: string) =>
       `https://api.basescan.org/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BASESCAN}`,
   },
+  scrolltest: {
+    label: "Scroll Testnet",
+    url: "https://api-sepolia.scrollscan.dev",
+    apiKey: process.env.APIKEY_ETHERSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://api-sepolia.scrollscan.dev/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ETHERSCAN}`,
+  },
+  Startnet: {
+    label: "Starknet Mainnet",
+    url: "https://api.starkscan.co",
+    apiKey: process.env.APIKEY_STARKSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://api.starkscan.co/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_STARKSCAN}`,
+  },
+  XDCNetwork : {
+    label: "XDC Network Mainnet",
+    url: "https://xdc.blocksscan.io",
+    apiKey: process.env.APIKEY_XDCSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://xdc.blocksscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_XDCSCAN}`,
+  },
+  mantleNetwork : {
+    label: "Mantle Mainnet",
+    url: "https://xdc.blocksscan.io",
+    apiKey: process.env.APIKEY_XDCSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://xdc.blocksscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_XDCSCAN}`,
+  },
   goerli: {
-    label: "Goerli Testnet",
+    label: "ETH Goerli Testnet",
     url: "https://goerli.etherscan.io",
     apiKey: process.env.APIKEY_ETHERSCAN as string,
     endpoint: (contractAddress: string) =>
@@ -36,19 +64,12 @@ export const NETWORKS: NetworksObject = {
     endpoint: (contractAddress: string) =>
       `https://api-testnet.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_POLYGONSCAN}`,
   },
-  "arbitrum one": {
-    label: "Arbitrum One Mainnet",
+  "arbitrum Mainnet": {
+    label: "Arbitrum Mainnet",
     url: "https://arbiscan.io",
     apiKey: process.env.APIKEY_BSCSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BSCSCAN}`,
-  },
-  "arbitrum nova": {
-    label: "Arbitrum Nova Mainnet",
-    url: "https://nova.arbiscan.io",
-    apiKey: process.env.APIKEY_ARBITRUMSCAN as string,
-    endpoint: (contractAddress: string) =>
-      `https://api-nova.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ARBITRUMSCAN}`,
   },
   "arbitrum goerli": {
     label: "Arbitrum Goerli Testnet",
@@ -57,4 +78,5 @@ export const NETWORKS: NetworksObject = {
     endpoint: (contractAddress: string) =>
       `https://api-goerli.arbiscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ARBITRUMSCAN}`,
   },
+
 };

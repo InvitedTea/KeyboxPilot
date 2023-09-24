@@ -1,21 +1,28 @@
-// pages/api/uploadToWeb3.js
-
-import { Web3Storage } from 'web3.storage';
+import { Web3Storage, File } from 'web3.storage';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).end();
+    return res.status(405).send('Method Not Allowed');
   }
 
   const token = process.env.WEB3STORAGE_TOKEN;
+  if (!token) {
+    return res.status(500).send('A token is needed. You can create one on https://web3.storage');
+  }
+
   const storage = new Web3Storage({ token });
-  const fileContent = req.body.content;
+  
+  // Convert the content into a File object provided by web3.storage
+  const file = new File([req.body.content], 'report.txt', { type: 'text/plain' });
 
   try {
-    const files = [{ content: new TextEncoder().encode(fileContent), name: 'report.txt' }];
-    const cid = await storage.put(files);
-    res.status(200).json({ cid: cid.toString() });
+    const cid = await storage.put([file]);
+    return res.status(200).json({ 
+      cid: cid.toString(), 
+      url: `https://${cid}.ipfs.dweb.link`
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to upload to Web3.Storage' });
+    console.error("Web3.Storage upload error:", error.message);
+    return res.status(500).json({ error: 'Failed to upload to Web3.Storage' });
   }
 }
