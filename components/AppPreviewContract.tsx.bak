@@ -4,15 +4,6 @@ import { useAppContext } from "../utils/useAppContext";
 import { AppButton } from "./AppButton";
 import ExternalLink from "./ExternalLink";
 
-import dynamic from 'next/dynamic';
-
-const SyntaxHighlighter = dynamic(() => 
-    import('react-syntax-highlighter').then(mod => mod.Prism),
-    { ssr: false }
-);
-
-import { atomDark as atomDarkStyle } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-
 export default function AppPreviewContract() {
   const { contract, hasContract, showNotification, downloadContract } =
     useAppContext();
@@ -63,9 +54,9 @@ export default function AppPreviewContract() {
                       <ClipboardIcon width={20} />
                     </button>
                   </div>
-                  <SyntaxHighlighter className="custom-highlight"  language="solidity"  style={atomDarkStyle}>
-                      {contractData.content}
-                  </SyntaxHighlighter>
+                  <pre>
+                    <code>{contractData.content}</code>
+                  </pre>
                 </div>
               </div>
             </div>

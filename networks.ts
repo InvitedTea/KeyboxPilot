@@ -8,12 +8,12 @@ export const NETWORKS: NetworksObject = {
     endpoint: (contractAddress: string) =>
       `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ETHERSCAN}`,
   },
-  basemain: {
-    label: "Base Mainnet",
-    url: "https://api.basescan.org/",
-    apiKey: process.env.APIKEY_BASESCAN as string,
+  rinkeby: {
+    label: "Rinkeby Testnet",
+    url: "https://rinkeby.etherscan.io",
+    apiKey: process.env.APIKEY_ETHERSCAN as string,
     endpoint: (contractAddress: string) =>
-      `https://api.basescan.org/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BASESCAN}`,
+      `https://api-rinkeby.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_ETHERSCAN}`,
   },
   ropsten: {
     label: "Ropsten Testnet",
@@ -49,6 +49,20 @@ export const NETWORKS: NetworksObject = {
     apiKey: process.env.APIKEY_POLYGONSCAN as string,
     endpoint: (contractAddress: string) =>
       `https://api-testnet.polygonscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_POLYGONSCAN}`,
+  },
+  bsc: {
+    label: "Binance Smart Chain Mainnet",
+    url: "https://bscscan.com",
+    apiKey: process.env.APIKEY_BSCSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://api.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BSCSCAN}`,
+  },
+  bscTest: {
+    label: "Binance Smart Chain Testnet",
+    url: "https://testnet.bscscan.com",
+    apiKey: process.env.APIKEY_BSCSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://api-testnet.bscscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BSCSCAN}`,
   },
   "arbitrum one": {
     label: "Arbitrum One Mainnet",

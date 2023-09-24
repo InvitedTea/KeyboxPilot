@@ -1,6 +1,5 @@
 {
-  "name": "keyboxpilot",
-  "version": "0.1.0",
+  "name": "smart-contract-downloader",
   "private": true,
   "scripts": {
     "dev": "next dev",
