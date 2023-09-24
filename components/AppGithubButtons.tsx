@@ -9,10 +9,10 @@ export const AppGithubButtons: React.FC = () => {
   return (
     <div className="flex gap-4">
       <GitHubButton
-        href="https://github.com/keyboxai"
-        aria-label="Follow @KeyBoxAI on GitHub"
+        href="https://github.com/invitedtea"
+        aria-label="Code on @InvitedTea on GitHub"
       >
-        Follow @KeyBoxAI
+        Code on @InvitedTea
       </GitHubButton>
     </div>
   );

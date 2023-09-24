@@ -33,7 +33,7 @@ export default function AppForm() {
           })();
         }}
       >
-        {({ isSubmitting, errors, touched, values }) => (
+        {({ isSubmitting, errors, touched, values, setFieldValue }) => (
           <Form>
             <div className="flex flex-col items-center gap-4">
               <div className="flex w-full flex-col">
@@ -83,6 +83,40 @@ export default function AppForm() {
                   Find contract
                 </AppButton>
               </div>
+
+              <div className="mt-4">
+    <p>Example Addresses:</p>
+    <ul className="flex gap-2">
+        <li>
+            <button 
+                type="button" 
+                className="text-blue-500 hover:underline"
+                onClick={() => setFieldValue('contractAddress', '0x163f8C2467924be0ae7B5347228CABF260318753')}
+            >
+                Worldcoin(WLD)Token
+            </button>
+        </li>
+        <li>
+            <button 
+                type="button" 
+                className="text-blue-500 hover:underline"
+                onClick={() => setFieldValue('contractAddress', '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e')}
+            >
+                ENS:Registry
+            </button>
+        </li>
+        <li>
+            <button 
+                type="button" 
+                className="text-blue-500 hover:underline"
+                onClick={() => setFieldValue('contractAddress', '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913')}
+            >
+                USDC-BASE
+            </button>
+        </li>
+    </ul>
+</div>
+
             </div>
           </Form>
         )}

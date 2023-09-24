@@ -1,10 +1,11 @@
-import { ArrowDownTrayIcon, ClipboardIcon } from "@heroicons/react/20/solid";
+import { ArrowDownTrayIcon, ClipboardIcon, CubeTransparentIcon, BeakerIcon} from "@heroicons/react/20/solid";
 import { copyToClipboard } from "../utils/helpers";
 import { useAppContext } from "../utils/useAppContext";
 import { AppButton } from "./AppButton";
 import ExternalLink from "./ExternalLink";
 
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 
 const SyntaxHighlighter = dynamic(() => 
     import('react-syntax-highlighter').then(mod => mod.Prism),
@@ -16,8 +17,32 @@ import { atomDark as atomDarkStyle } from 'react-syntax-highlighter/dist/cjs/sty
 export default function AppPreviewContract() {
   const { contract, hasContract, showNotification, downloadContract } =
     useAppContext();
+  
+  
+    if (!contract || !hasContract) return null;
+  const router = useRouter();
+  
+  const analyzeContract = async () => {
+    const response = await fetch('/api/analyze-contract', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        contractData: contract, 
+      }),
+    });
+    console.log("contractData:", contract);
+    const result = await response.json();
+    
+    // Redirect to the analyze page with the analysis result
+    router.push({
+      pathname: '/analyze',
+      query: { result: JSON.stringify(result) }, // passing result as a query parameter
+    });
+  };
 
-  if (!contract || !hasContract) return null;
+  
 
   return (
     <div className="flex flex-col gap-4">
@@ -31,6 +56,26 @@ export default function AppPreviewContract() {
             </ExternalLink>
           )}
         </div>
+
+        <div>
+          <AppButton
+            onClick={analyzeContract}
+            icon={<CubeTransparentIcon width={20} />}
+          >
+            <span className="hidden md:block">Analyze Contract Powered by Google Vertex AI</span>
+          </AppButton>
+        </div>
+      </div>
+
+      <div>
+          <AppButton
+            onClick={analyzeContract}
+            icon={<BeakerIcon  width={20} />}
+          >
+            <span className="hidden md:block">Intelligence Risk assessment </span>
+          </AppButton>
+        </div>
+
         <div>
           <AppButton
             onClick={downloadContract}
@@ -39,7 +84,11 @@ export default function AppPreviewContract() {
             <span className="hidden md:block">Download contract</span>
           </AppButton>
         </div>
-      </div>
+
+
+
+
+
       <div className="mb-20 flex flex-col gap-4">
         {contract.contents.map((contractData, index) => {
           return (
