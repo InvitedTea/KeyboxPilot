@@ -15,6 +15,20 @@ export const NETWORKS: NetworksObject = {
     endpoint: (contractAddress: string) =>
       `https://api.basescan.org/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_BASESCAN}`,
   },
+  Linea: {
+    label: "Linea Mainnet",
+    url: "https://api.lineascan.build/",
+    apiKey: process.env.APIKEY_lineascan as string,
+    endpoint: (contractAddress: string) =>
+      `https://api.lineascan.build/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_lineascan}`,
+  },
+  Gnosisscan: {
+    label: "Gnosis Mainnet",
+    url: "https://api.gnosisscan.io/",
+    apiKey: process.env.APIKEY_GSCAN as string,
+    endpoint: (contractAddress: string) =>
+      `https://api.gnosisscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_GSCAN}`,
+  },
   scrolltest: {
     label: "Scroll Testnet",
     url: "https://api-sepolia.scrollscan.dev",
@@ -38,10 +52,10 @@ export const NETWORKS: NetworksObject = {
   },
   mantleNetwork : {
     label: "Mantle Mainnet",
-    url: "https://xdc.blocksscan.io",
-    apiKey: process.env.APIKEY_XDCSCAN as string,
+    url: "https://mantlescan.info",
+    apiKey: process.env.APIKEY_MAnTLESCAN as string,
     endpoint: (contractAddress: string) =>
-      `https://xdc.blocksscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_XDCSCAN}`,
+      `https://mantlescan.info/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.APIKEY_MAnTLESCAN}`,
   },
   goerli: {
     label: "ETH Goerli Testnet",

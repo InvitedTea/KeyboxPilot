@@ -5,17 +5,6 @@ import { useRouter } from 'next/router';
 import AppPreviewContract from "../components/AppPreviewContract";
 import React, { useState } from 'react';
 
-import { XMTPProvider } from "@xmtp/react-sdk";
-
-createRoot(document.getElementById("root") as HTMLElement).render(
-  <StrictMode>
-    <XMTPProvider>
-      <App />
-    </XMTPProvider>
-  </StrictMode>,
-);
-
-
 export default function Analyze() {
   const router = useRouter();
   const { result } = router.query;
